@@ -1,0 +1,851 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+:root {
+  --poppins: "Poppins", sans-serif;
+  --lato: "Lato", sans-serif;
+
+  --light: #f9f9f9;
+  --blue: #e63c3c;
+  --light-blue: #cfe8ff;
+  --grey: #eee;
+  --dark-grey: #aaaaaa;
+  --dark: #342e37;
+  --red: #db504a;
+  --yellow: #ffce26;
+  --light-yellow: #fff2c6;
+  --orange: #fd7238;
+  --light-orange: #ffe0d3;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body.dark {
+  --light: gray;
+  --grey: #060714;
+  --dark: #fbfbfb;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+
+  height: 100vh;
+  display: flex;
+  background: var(--grey);
+  overflow-x: hidden;
+  display: flex;
+}
+.body2 {
+  justify-content: center;
+  align-items: center;
+  background-image: url("../bgtelkom.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.text {
+  margin-right: 1px;
+}
+h1 {
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.151);
+}
+
+/* SIDEBAR */
+.submenu {
+  display: none;
+  list-style-type: none;
+  padding-left: 20px;
+}
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: var(--light);
+  z-index: 2000;
+  font-family: var(--lato);
+  transition: 0.3s ease;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+#sidebar::--webkit-scrollbar {
+  display: none;
+}
+#sidebar.hide {
+  width: 60px;
+}
+#sidebar .brand img {
+  position: absolute;
+  top: 4px;
+  left: 191px;
+}
+#sidebar .brand p {
+  text-indent: 0;
+  color: gray;
+}
+#sidebar .brand {
+  font-size: 24px;
+  text-indent: 40px;
+  font-weight: 700;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  color: var(--blue);
+  position: sticky;
+  top: 0;
+  left: 20px;
+  background: var(--light);
+  z-index: 500;
+  padding-bottom: 20px;
+  box-sizing: content-box;
+}
+
+#sidebar .side-menu {
+  width: 100%;
+  margin-top: 48px;
+}
+#sidebar .side-menu li {
+  height: 48px;
+  background: transparent;
+  margin-left: 6px;
+  border-radius: 48px 0 0 48px;
+  padding: 4px;
+}
+#sidebar .side-menu li.active {
+  background: var(--grey);
+  position: relative;
+}
+#sidebar .side-menu li.active::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: -40px;
+  right: 0;
+  box-shadow: 20px 20px 0 var(--grey);
+  z-index: -1;
+}
+#sidebar .side-menu li.active::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  bottom: -40px;
+  right: 0;
+  box-shadow: 20px -20px 0 var(--grey);
+  z-index: -1;
+}
+#sidebar .side-menu li a {
+  width: 100%;
+  height: 100%;
+  background: var(--light);
+  display: flex;
+  align-items: center;
+  border-radius: 48px;
+  font-size: 16px;
+  color: var(--dark);
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+#sidebar .side-menu.top li.active a {
+  color: var(--blue);
+}
+#sidebar.hide .side-menu li a {
+  width: calc(48px - (4px * 2));
+  transition: width 0.3s ease;
+}
+#sidebar .side-menu li a.logout {
+  color: var(--red);
+}
+#sidebar .side-menu.top li a:hover {
+  color: var(--blue);
+}
+#sidebar .side-menu li a .bx {
+  min-width: calc(60px - ((4px + 6px) * 2));
+  display: flex;
+  justify-content: center;
+}
+/* Induk Sub-menu: Pastikan memiliki posisi relatif untuk referensi sub-menu */
+#sidebar .side-menu li.has-submenu {
+  position: relative; /* Induk dengan posisi relatif */
+}
+
+/* Sub-menu: Awalnya tersembunyi */
+#sidebar .side-menu li.has-submenu > .sub-menu {
+  display: none; /* Sub-menu tersembunyi secara default */
+  position: absolute; /* Tampilkan di luar item induk */
+  left: 10%; /* Geser lebih dekat ke kanan elemen induk */
+  top: 90%;
+  bottom: unset; /* Tepat di atas elemen induk */
+  background: var(--light); /* Warna latar belakang */
+  list-style: none; /* Hilangkan bullet */
+  border-radius: 8px;
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+  z-index: 10; /* Pastikan berada di atas elemen lainnya */
+  min-width: 200px; /* Atur lebar minimum */
+}
+
+/* Tampilkan sub-menu saat di-hover atau aktif */
+#sidebar .side-menu li.has-submenu:hover > .sub-menu,
+#sidebar .side-menu li.has-submenu.active > .sub-menu {
+  display: block; /* Tampilkan sub-menu */
+}
+
+/* Item dalam sub-menu */
+#sidebar .side-menu li.has-submenu .sub-menu li a {
+  padding: 10px 20px;
+  display: block;
+  color: var(--dark);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+#sidebar .side-menu li.has-submenu .sub-menu li a:hover {
+  background: var(--grey); /* Hover warna abu-abu */
+  color: var(--blue); /* Teks berubah warna biru */
+}
+
+/* CONTENT */
+#content {
+  position: relative;
+  width: calc(100% - 280px);
+  left: 280px;
+  transition: 0.4s ease;
+}
+#sidebar.hide ~ #content {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
+/* NAVBAR */
+#content nav {
+  height: 56px;
+  background: var(--light);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+  font-family: var(--lato);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+#content nav::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: -40px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: -20px -20px 0 var(--light);
+}
+#content nav a {
+  color: var(--dark);
+}
+#content nav .bx.bx-menu {
+  cursor: pointer;
+  color: var(--dark);
+}
+#content nav .nav-link {
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+#content nav .nav-link:hover {
+  color: var(--blue);
+}
+#content nav form {
+  max-width: 400px;
+  width: 100%;
+  margin-right: auto;
+}
+
+/* NAVBAR */
+/* MAIN */
+#content main {
+  width: 100%;
+  padding: 36px 24px;
+  font-family: var(--poppins);
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+#content main .head-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 16px;
+  flex-wrap: wrap;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar {
+    width: 200px;
+  }
+
+  #content {
+    width: calc(100% - 60px);
+    left: 200px;
+  }
+
+  #content nav .nav-link {
+    display: none;
+  }
+}
+
+#content main .box-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-gap: 24px;
+  margin-top: 36px;
+}
+#content main .box-info li {
+  padding: 24px;
+  background: var(--light);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+}
+#content main .box-info li .bx {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#content main .box-info li:nth-child(1) .bx {
+  background: rgba(128, 128, 128, 0.265);
+  color: var(--blue);
+}
+#content main .box-info li:nth-child(2) .bx {
+  background: rgba(128, 128, 128, 0.265);
+  color: var(--blue);
+}
+#content main .box-info li:nth-child(3) .bx {
+  background: rgba(128, 128, 128, 0.265);
+  color: var(--blue);
+}
+#content main .box-info li:nth-child(4) .bx {
+  background: rgba(128, 128, 128, 0.265);
+  color: var(--blue);
+}
+#content main .box-info li .text h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark);
+}
+#content main .box-info li .text p {
+  color: var(--dark);
+}
+
+#content main .table-data {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 24px;
+  margin-top: 24px;
+  width: 100%;
+  color: var(--dark);
+}
+#content main .table-data > div {
+  border-radius: 20px;
+  background: var(--light);
+  padding: 24px;
+  overflow-x: auto;
+}
+#content main .table-data .head {
+  display: flex;
+  align-items: center;
+  grid-gap: 16px;
+  margin-bottom: 24px;
+}
+#content main .table-data .head h3 {
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: 600;
+}
+#content main .table-data .head .bx {
+  cursor: pointer;
+}
+
+#content main .table-data .order {
+  flex-grow: 1;
+  flex-basis: 500px;
+}
+#content main .table-data .order table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#content main .table-data .order table th {
+  padding-bottom: 12px;
+  font-size: 13px;
+  text-align: left;
+  border-bottom: 1px solid var(--grey);
+}
+#content main .table-data .order table td {
+  padding: 16px 0;
+}
+#content main .table-data .order table tr td:first-child {
+  display: flex;
+  align-items: center;
+  grid-gap: 12px;
+  padding-left: 6px;
+}
+#content main .table-data .order table td img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+#content main .table-data .order table tbody tr:hover {
+  background: var(--grey);
+}
+#content main .table-data .order table tr td .status {
+  font-size: 10px;
+  padding: 6px 16px;
+  color: var(--light);
+  border-radius: 20px;
+  font-weight: 700;
+}
+#content main .table-data .order table tr td .status.completed {
+  background: var(--blue);
+}
+#content main .table-data .order table tr td .status.process {
+  background: var(--yellow);
+}
+#content main .table-data .order table tr td .status.pending {
+  background: var(--orange);
+}
+
+#content main .table-data .todo {
+  flex-grow: 1;
+  flex-basis: 300px;
+}
+#content main .table-data .todo .todo-list {
+  width: 100%;
+}
+#content main .table-data .todo .todo-list li {
+  width: 100%;
+  margin-bottom: 16px;
+  background: var(--grey);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#content main .table-data .todo .todo-list li .bx {
+  cursor: pointer;
+}
+#content main .table-data .todo .todo-list li.completed {
+  border-left: 10px solid var(--blue);
+}
+#content main .table-data .todo .todo-list li.not-completed {
+  border-left: 10px solid var(--orange);
+}
+#content main .table-data .todo .todo-list li:last-child {
+  margin-bottom: 0;
+}
+
+#content main .table-data .head {
+  min-width: 420px;
+}
+#content main .table-data .order table {
+  min-width: 420px;
+}
+#content main .table-data .todo .todo-list {
+  min-width: 420px;
+}
+
+/*login*/
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-box {
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  backdrop-filter: blur(10px); /* Efek blur */
+  background: rgba(255, 255, 255, 0.2); /* Warna semi-transparan */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Garis semi-usertransparan */
+  transform: scale(0.98);
+  animation: fadeIn 0.5s ease-in-out;
+  color: #ddd;
+}
+
+.textbox {
+  position: relative;
+  margin-bottom: 20px; /* Jarak antar input */
+}
+
+.textbox i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.textbox input {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* Ruang tambahan untuk ikon */
+  border: 1px solid #ddd; /* Warna netral */
+  border-radius: 8px;
+  background: #fff; /* Background solid putih */
+  color: #333; /* Warna teks gelap */
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.textbox input::placeholder {
+  color: #aaa;
+}
+
+.textbox input:focus {
+  border: 1px solid #d50000; /* Fokus dengan warna merah Telkom */
+  background: #f9f9f9; /* Sedikit warna abu-abu untuk efek fokus */
+}
+
+.btn-login {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #d50000; /* Warna merah Telkom */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px; /* Jarak antara tombol login dan input terakhir */
+}
+
+.btn-login:hover {
+  background: #b71c1c; /* Warna merah lebih gelap untuk efek hover */
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #0000007d;
+  font-size: 12px;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.434);
+}
+.forgot-password p {
+  text-decoration: none;
+  color: #0000007d;
+  font-size: 10px;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.434);
+}
+
+.forgot-password a:hover {
+  color: #cc2e2e;
+}
+
+.error-message {
+  color: #cc2e2e;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login-box {
+    width: 90%;
+  }
+}
+
+/* Gaya untuk tabel */
+
+input[type="text"],
+input[type="number"],
+input[type="time"],
+input[type="password"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+input:focus,
+select:focus {
+  border-color: #ff0000;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* Gaya untuk label */
+label {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+/* Gaya untuk tombol Edit dan Hapus */
+.btn-edit,
+.btn-delete {
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+  display: inline-block;
+  border: none;
+}
+
+.btn-edit {
+  background-color: #6c757d; /* Abu-abu */
+}
+
+.btn-edit:hover {
+  background-color: #5a6268;
+}
+
+.btn-delete {
+  background-color: #e30613; /* Merah Telkom */
+}
+
+.btn-delete:hover {
+  background-color: #b2050f; /* Merah gelap */
+}
+/*tambah data jabatan*/
+.button-container {
+  display: flex; /* Membuat elemen dalam kontainer ini berada dalam satu baris */
+  gap: 10px; /* Memberikan jarak antar elemen */
+  margin-top: 10px;
+}
+
+/* Styling untuk tombol */
+.button-container button,
+.button-container a {
+  padding: 10px 20px; /* Ukuran tombol */
+  font-size: 16px;
+  color: #fff; /* Warna teks putih */
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none; /* Menghilangkan garis bawah pada link */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Efek transisi */
+}
+
+/* Warna tombol Update */
+.button-container button {
+  background-color: #e30613; /* Warna merah */
+}
+
+.button-container button:hover {
+  background-color: #b2050f; /* Merah lebih gelap saat hover */
+}
+
+/* Warna tombol Kembali */
+.button-container a {
+  background-color: #6c757d; /* Warna biru */
+}
+
+.button-container a:hover {
+  background-color: #5a6268; /* Biru lebih gelap saat hover */
+}
+.tesinput {
+  border-radius: 20px;
+  background: var(--light);
+  padding: 24px;
+  overflow-x: auto;
+}
+.card-container {
+  display: flex;
+  /* Menyusun card secara horizontal */
+  gap: 20px;
+  /* Jarak antar card */
+  flex-wrap: wrap;
+  /* Card akan membungkus ke baris baru jika layar kecil */
+  gap: 20px; /* Jarak antar card */
+  justify-content: center; /* Pusatkan card di tengah */
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  /* Lebar card */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-header {
+  background-color: #d91d2a;
+  color: white;
+  padding: 16px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-body {
+  padding: 16px;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.card-footer {
+  background-color: #f9f9f9;
+  padding: 12px;
+  text-align: right;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.date {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+.jam {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.jarak {
+  margin-left: 10px;
+}
+
+.button-container {
+  justify-content: center;
+}
+.posisi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.posisi .left {
+  display: flex;
+}
+
+.form-control {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 390px;
+  max-width: 100%;
+}
+.excel-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+  display: inline-block;
+  border: none;
+  background-color: #038203;
+}
+.excel-btn:hover {
+  background-color: #026002;
+}
+.navbar1 .brand img {
+  position: absolute;
+  top: 4px;
+  left: 151px;
+}
+.navbar1 .brand p {
+  text-indent: 0;
+  color: gray;
+}
+.navbar1 .brand {
+  font-size: 24px;
+  font-weight: 700;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  color: #e30613;
+  position: sticky;
+  top: 0;
+}
+.navbar1 .brand .text {
+  color: #e30613;
+}
+footer {
+  color: rgb(161, 158, 158);
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  margin-top: 180px;
+  font-size: 10px;
+}
