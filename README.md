@@ -19,6 +19,22 @@ Lihat dan coba langsung aplikasi ini melalui link berikut:
 
 ---
 
+## Akun Untuk Login
+  #### Admin
+  username: admin
+  password: 123
+  #### Admin
+  username: kojet
+  password: 123
+  username: anong
+  password: 123
+  username: gilang
+  password: 123
+  username: sandi
+  password: 123
+
+---
+
 ## 📸 Screenshot
 Berikut adalah beberapa tangkapan layar dari aplikasi ini:
 
