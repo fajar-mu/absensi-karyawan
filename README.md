@@ -53,8 +53,8 @@ Berikut adalah beberapa tangkapan layar dari aplikasi ini:
 ## 📞 Hubungi Saya
 Butuh bantuan atau ingin berdiskusi lebih lanjut? Saya siap membantu! Hubungi saya melalui:
 
-- **📸 Instagram**: [IG](https://instagram.com/faajharr)
-- **📱 WhatsApp**: [WA](https://wa.me/623153437501)
+- **📸 Instagram**: [IG](https://instagram.com/faajharr_)
+- **📱 WhatsApp**: [WA](https://wa.me/6283153437501)
 
 ---
 
