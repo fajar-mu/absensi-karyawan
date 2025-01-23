@@ -76,18 +76,3 @@ Butuh bantuan atau ingin berdiskusi lebih lanjut? Saya siap membantu! Hubungi sa
 
 ## 🤝 Tentang Proyek
 Proyek ini dikembangkan sebagai bagian dari **Praktik Kerja Lapangan (PKL)** oleh siswa **SMKN 1 Semparuk** di **Telkom Singkawang**. Kami berharap aplikasi ini dapat memberikan manfaat nyata dalam pengelolaan absensi karyawan.
-
----
-
-## 🤝 Kontribusi
-Kami selalu membuka kesempatan untuk kontribusi! Jika Anda memiliki ide atau saran, jangan ragu untuk mengajukan pull request atau membuka issue di repositori ini.
-
----
-
-## ⭐ Dukung Proyek Ini
-Jika Anda merasa aplikasi ini bermanfaat, beri kami bintang di GitHub dan bagikan kepada rekan-rekan Anda. Dukungan Anda sangat berarti bagi kami! 🙏
-
----
-
-Terima kasih telah menggunakan aplikasi ini! Jangan ragu untuk menghubungi saya jika ada pertanyaan atau masukan. 🌟
-
