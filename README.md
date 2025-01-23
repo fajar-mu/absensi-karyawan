@@ -23,7 +23,7 @@ Lihat dan coba langsung aplikasi ini melalui link berikut:
   #### Admin
   - username: admin
   - password: 123
-  #### Admin
+  #### User
   - username: kojet
   - password: 123
   - username: anong
